@@ -18,7 +18,9 @@
 /out/
 
 #Spring
-/Spring/
+/Spring/login
+/Spring/produto
+/Spring/venda
 
 # production
 /build
