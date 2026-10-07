@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, SubmitEvent  } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/app/AuthContext';
 
@@ -17,7 +17,7 @@ export default function LoginPage() {
   const [erro, setErro] = useState('');
   const [enviando, setEnviando] = useState(false);
 
-  async function enviar(e: SubmitEvent ) {
+  async function enviar(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setErro('');
     setEnviando(true);
