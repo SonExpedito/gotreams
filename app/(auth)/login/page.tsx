@@ -2,7 +2,7 @@
 
 import { useState, type SubmitEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/app/AuthContext';
+import { useAuth } from '@/app/Authcontext';
 
 const campo =
   'w-full rounded-md border border-stone-300 bg-white px-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:border-rose-600 focus:outline-2 focus:outline-rose-600/30';

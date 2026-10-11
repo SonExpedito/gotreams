@@ -8,8 +8,8 @@ if (-not $raiz) { $raiz = (Get-Location).Path }
 
 $servicos = @(
     @{ Nome = "login";   PortaPadrao = 8083 },
-    @{ Nome = "produto"; PortaPadrao = 8081 },
-    @{ Nome = "venda";   PortaPadrao = 8082 }
+    @{ Nome = "produto"; PortaPadrao = 8082 },
+    @{ Nome = "venda";   PortaPadrao = 8081 }
 )
 $portaFront = 3000
 

@@ -1,24 +1,30 @@
 import type { NextConfig } from "next";
 
-// Em desenvolvimento usa localhost. Em produção, defina as variáveis de ambiente.
-const LOGIN_URL = process.env.LOGIN_URL ?? "http://localhost:8083";
-const PRODUTO_URL = process.env.PRODUTO_URL ?? "http://localhost:8081";
-const VENDA_URL = process.env.VENDA_URL ?? "http://localhost:8082";
+// O Gateway na porta 8080 centraliza todas as requisições do sistema
+const GATEWAY_URL = process.env.GATEWAY_URL ?? "http://localhost:8080";
 
 const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        // /api/auth/... -> repassa para o Gateway em /auth/... -> Login (8083)
         source: "/api/auth/:path*",
-        destination: `${LOGIN_URL}/auth/:path*`, // Microsserviço de Login
+        destination: `${GATEWAY_URL}/auth/:path*`,
       },
       {
+        // /api/lives -> repassa para o Gateway em /lives -> Produto (8082)
+        source: "/api/lives",
+        destination: `${GATEWAY_URL}/lives`,
+      },
+      {
+        // /api/lives/... -> repassa para o Gateway em /lives/... -> Produto (8082)
         source: "/api/lives/:path*",
-        destination: `${PRODUTO_URL}/api/lives/:path*`, // Microsserviço de Produto (controller mapeado em /api/lives)
+        destination: `${GATEWAY_URL}/lives/:path*`,
       },
       {
+        // /api/vendas/... -> repassa para o Gateway em /vendas/... -> Venda (8081)
         source: "/api/vendas/:path*",
-        destination: `${VENDA_URL}/vendas/:path*`, // Microsserviço de Vendas
+        destination: `${GATEWAY_URL}/vendas/:path*`,
       },
     ];
   },

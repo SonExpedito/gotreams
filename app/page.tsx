@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { listarLives, type Live } from '@/api/lives';
-import { useAuth } from '@/app/AuthContext';
+import { useAuth } from '@/app/Authcontext';
 
 const btnPrimario =
   'rounded-md bg-rose-600 px-3.5 py-2 text-sm font-medium text-white transition hover:bg-rose-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600 disabled:opacity-50';

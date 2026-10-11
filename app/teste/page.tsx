@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type ReactNode } from 'react';
-import { useAuth } from '@/app/AuthContext';
+import { useAuth } from '@/app/Authcontext';
 
 const campo =
   'min-w-0 flex-1 basis-36 rounded-md border border-stone-300 bg-white px-3 py-2 text-sm placeholder:text-stone-400 focus:border-rose-600 focus:outline-2 focus:outline-rose-600/30';

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { obterLive, type Live } from '@/api/lives';
 import { comprarIngresso } from '@/api/vendas';
-import { useAuth } from '@/app/AuthContext';
+import { useAuth } from '@/app/Authcontext';
 
 export default function LiveDetalhePage() {
   const { id } = useParams<{ id: string }>();
