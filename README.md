@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 GoStreams - Frontend
 
-## Getting Started
+Interface web desenvolvida em **Next.js** (React & TypeScript) para gerenciamento de transmissões ao vivo, autenticação de usuários e aquisição de ingressos integrados a uma arquitetura de microsserviços.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🏗️ Arquitetura e Comunicação
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O frontend foi projetado para **não se comunicar diretamente** com os microsserviços individuais. Todas as requisições de API (`/api/auth/*`, `/api/lives/*`, `/api/vendas/*`) são unificadas e roteadas automaticamente via `rewrites` para o **[API Gateway](https://github.com/CooingMTC/gateway.git)**, que opera como ponto único de entrada na porta **`8080`**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🔗 Ecossistema de Repositórios
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para que todas as funcionalidades do frontend operem corretamente, os serviços do backend correspondentes devem estar disponíveis:
 
-## Learn More
+- 🚪 **API Gateway (Entrada Central - Porta 8080):** [github.com/CooingMTC/gateway](https://github.com/CooingMTC/gateway.git)
+- 🔐 **Microsserviço de Login & Autenticação:** [github.com/CooingMTC/login](https://github.com/CooingMTC/login.git)
+- 🎥 **Microsserviço de Produto (Lives):** [github.com/CooingMTC/produto](https://github.com/CooingMTC/produto.git)
+- 🛒 **Microsserviço de Venda (Pedidos & Mensageria):** [github.com/CooingMTC/venda](https://github.com/CooingMTC/venda.git)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚙️ Pré-requisitos
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Node.js** (versão 18+ recomendada)
+- Gerenciador de pacotes **npm**
+- Todos os microsserviços e o **API Gateway** em execução localmente
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Como Executar o Frontend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone o repositório e acesse o diretório:**
+   ```bash
+   git clone <URL_DO_REPOSITORIO_FRONTEND>
+   cd gotireams
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+3. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Acesse no navegador:**
+   Abra [http://localhost:3000](http://localhost:3000) para interagir com a interface.
+
+---
+
+## 🔄 Fluxo de Funcionalidades no Frontend
+
+1. **Autenticação:** Cadastro e login de usuários com emissão de token JWT e persistência via cookies seguros.
+2. **Catálogo de Lives:** Criação e listagem de eventos ao vivo com vagas limitadas.
+3. **Compra e Processamento Assíncrono:** Solicitação de ingressos com verificação de status do pedido em tempo real via protocolo UUID.
